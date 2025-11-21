@@ -1,0 +1,302 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --primary-color: #007BFF; /* Azul confianza */
+    --accent-color: #17A2B8;  /* Turquesa */
+    --text-color: #333;
+    --bg-light: #F8F9FA;
+    --bg-dark: #2c3e50;
+    --font-family: 'Montserrat', sans-serif;
+    --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: #fff;
+    padding-top: 70px; /* Espacio para el navbar fijo */
+}
+
+/* =========================================
+   2. BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================= */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 5%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.nav-brand a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--primary-color); }
+
+.cta-nav {
+    background-color: var(--primary-color);
+    color: white !important;
+    padding: 10px 25px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.cta-nav:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(23, 162, 184, 0.3);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* =========================================
+   3. COMPONENTES GENERALES
+   ========================================= */
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--bg-dark);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+/* Línea decorativa debajo de los títulos */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4);
+    transition: transform 0.3s;
+}
+
+.cta-button:hover { transform: translateY(-3px); }
+
+/* =========================================
+   4. HERO SECTION (INICIO)
+   ========================================= */
+.hero {
+    height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero .hero-content {
+    max-width: 800px; /* Ancho estrecho para que el texto se lea bien */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.hero-logo-placeholder {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   5. SECCIÓN DE VENTAJAS / POR QUÉ ELEGIRNOS
+      (AQUÍ ESTÁ LA SOLUCIÓN)
+   ========================================= */
+#why-choose-us {
+    background-color: var(--bg-light);
+    padding: 80px 5%; /* Margen a los lados */
+}
+
+/* REGLA CLAVE: Sobrescribimos el ancho solo para esta sección */
+#why-choose-us .hero-content {
+    max-width: 1400px !important; /* Permitimos que sea muy ancho */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.why-choose-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 20px auto 50px auto;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* CONFIGURACIÓN DE LA GRILLA (GRID) */
+.service-grid {
+    display: grid;
+    gap: 30px;
+    /* Esto asegura que las columnas sean iguales */
+    grid-template-columns: repeat(3, 1fr); 
+    width: 100%;
+}
+
+/* Estilo de las tarjetas */
+.service-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-card);
+    text-align: center; /* Centramos el contenido dentro de la tarjeta */
+    transition: transform 0.3s ease;
+    
+    /* Flex para asegurar alineación interna */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%; /* Todas las tarjetas de la misma altura */
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card i {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* Específico para la sección "Por qué elegirnos" */
+.why-choose-grid .service-card {
+    text-align: left; /* Texto alineado a la izquierda como en tu diseño */
+    align-items: flex-start; /* Iconos a la izquierda */
+    border-top: 5px solid var(--primary-color); /* Detalle de color arriba */
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+footer {
+    background-color: var(--bg-dark);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.social-links { margin-top: 20px; }
+.social-links a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+}
+
+/* =========================================
+   7. RESPONSIVE (MÓVILES Y TABLETS)
+   ========================================= */
+
+/* Para Tablets y Pantallas pequeñas (menos de 1024px) */
+@media (max-width: 1024px) {
+    /* Cambiamos a 2 columnas si no caben 3 */
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Si queda una tarjeta suelta (la 3ra), que ocupe todo el ancho */
+    .service-card:last-child {
+        grid-column: span 2; /* Ocupa 2 espacios */
+        max-width: 600px; /* Pero no la dejes estirarse demasiado */
+        margin: 0 auto; /* Centrada */
+    }
+}
+
+/* Para Móviles (menos de 768px) */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.8rem; }
+    
+    /* Menú hamburguesa */
+    .menu-toggle { display: block; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li { margin: 10px 0; }
+    
+    /* Forzamos 1 sola columna en móvil */
+    .service-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    /* Reseteamos el truco del "last-child" para móvil */
+    .service-card:last-child {
+        grid-column: auto;
+        max-width: 100%;
+    }
+}
