@@ -34,7 +34,7 @@
         ul { list-style: none; }
 
         /* =========================================
-           2. BARRA DE NAVEGACIÓN (LOGO AJUSTADO)
+           2. BARRA DE NAVEGACIÓN (NUEVO LOGO AI)
            ========================================= */
         #navbar {
             position: fixed;
@@ -56,12 +56,21 @@
             height: 100%;
         }
 
-        /* --- AQUÍ CONTROLA EL TAMAÑO DEL LOGO EN EL MENÚ --- */
-        .nav-logo {
-            max-height: 50px; /* Altura máxima fija: evita que sea gigante */
-            width: auto;      /* El ancho se ajusta solo */
-            display: block;
+        /* --- ESTILOS DEL LOGO BASADO EN ICONO --- */
+        .ai-nav-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem; 
+            font-weight: 700;
+            color: var(--dark) !important;
+            gap: 8px; /* Espacio entre el ícono y el texto */
         }
+        .ai-nav-logo i {
+            color: var(--primary); /* Color primario para el icono */
+            font-size: 1.5rem; /* Tamaño un poco más grande para el icono */
+        }
+        /* --- FIN ESTILOS DEL LOGO BASADO EN ICONO --- */
+
 
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { font-weight: 600; font-size: 0.95rem; color: var(--dark); }
@@ -78,7 +87,7 @@
         .menu-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
 
         /* =========================================
-           3. HERO SECTION (LOGO MEDIANO)
+           3. HERO SECTION & ANIMACIÓN DE INICIO
            ========================================= */
         .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 20px; width: 100%; }
         .container-wide { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
@@ -91,15 +100,26 @@
             background: linear-gradient(135deg, #fff 0%, #f0f4f8 100%);
         }
 
+        /* CONFIGURACIÓN DE ANIMACIÓN */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Duración de la animación */
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+        /* FIN CONFIGURACIÓN DE ANIMACIÓN */
+
+
         .hero-logo-placeholder {
             margin-bottom: 2rem;
             display: flex;
             justify-content: center;
         }
 
-        /* --- AQUÍ CONTROLA EL TAMAÑO DEL LOGO EN EL HEADER --- */
         .hero-logo-img {
-            max-width: 280px; /* Ancho máximo para que se vea elegante */
+            max-width: 280px; 
             width: 100%;      
             height: auto;
         }
@@ -119,7 +139,7 @@
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0, 212, 255, 0.3); }
 
         /* =========================================
-           4. SECCIONES Y GRID (CENTRADOS)
+           4. SECCIONES Y GRID 
            ========================================= */
         section { padding: 5rem 0; }
         
@@ -174,8 +194,9 @@
             .grid-3 { grid-template-columns: 1fr; }
             .grid-3 .card:last-child { grid-column: auto; }
             
-            /* Ajuste logo móvil */
-            .nav-logo { max-height: 40px; }
+            /* Usar el estilo del icono en móvil también */
+            .ai-nav-logo { font-size: 1.3rem; }
+            .ai-nav-logo i { font-size: 1.6rem; }
         }
     </style>
 </head>
@@ -183,27 +204,44 @@
 
     <nav id="navbar">
         <div class="nav-brand">
-            <a href="#home">
-                <img src="logo.png" alt="Bravamedia" class="nav-logo">
+            <a href="#home" class="ai-nav-logo">
+                <i class="fas fa-microchip"></i>
+                <span>Bravamedia.ai</span>
             </a>
-        </div>
+            </div>
         <ul class="nav-links" id="nav-links">
             <li><a href="#home">Inicio</a></li>
             <li><a href="#services">Servicios</a></li>
             <li><a href="#why-choose-us">Ventajas</a></li>
-            <li><a href="#contact" class="cta-nav">Contacto</a></li>
+            
+            <li>
+                <a 
+                    href="https://wa.me/19099689879?text=Hola,%20me%20gustaría%20agendar%20una%20consultoría%20sobre%20servicios%20tecnológicos." 
+                    class="cta-nav" 
+                    target="_blank"
+                >
+                    Contacto
+                </a>
+            </li>
         </ul>
         <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
     </nav>
 
-    <section id="home" class="hero">
+    <section id="home" class="hero fade-in">
         <div class="container-narrow">
             <div class="hero-logo-placeholder">
                 <img src="logo.png" alt="Bravamedia Logo" class="hero-logo-img">
             </div>
             <h1>Tu Socio en Transformación Digital</h1>
             <p>Optimizamos tu infraestructura tecnológica para que tu negocio crezca sin límites.</p>
-            <a href="#contact" class="cta-button">Agenda una Consultoría</a>
+            
+            <a 
+                href="https://wa.me/19099689879?text=Hola,%20me%20gustaría%20agendar%20una%20consultoría%20sobre%20servicios%20tecnológicos." 
+                class="cta-button" 
+                target="_blank"
+            >
+                Agenda una Consultoría
+            </a>
         </div>
     </section>
 
@@ -234,40 +272,49 @@
         <div class="container-wide">
             <h2>¿Por Qué Elegirnos?</h2>
             <p class="why-us-text">
-                Nos diferencia nuestro enfoque proactivo y centrado en el ROI. No solo resolvemos problemas; evitamos que ocurran.
+                En un mercado saturado, nos diferencia nuestro enfoque proactivo y centrado en el ROI. No solo resolvemos problemas; evitamos que ocurran.
             </p>
             <div class="grid-3">
                 <div class="card why-us-card">
                     <i class="fas fa-check-circle fa-2x"></i>
-                    <h3>Experiencia</h3>
-                    <p>Equipo certificado con más de 10 años garantizando seguridad y cumplimiento.</p>
+                    <h3>Experiencia Comprobada</h3>
+                    <p>Equipo de ingenieros certificados con más de 10 años de experiencia garantizando seguridad.</p>
                 </div>
                 <div class="card why-us-card">
                     <i class="fas fa-rocket fa-2x"></i>
-                    <h3>Proactividad</h3>
-                    <p>Monitorizamos 24/7. Nuestro objetivo es "cero tiempo de inactividad".</p>
+                    <h3>Proactivo vs. Reactivo</h3>
+                    <p>Monitorizamos y actuamos de forma preventiva 24/7 para lograr "cero tiempo de inactividad".</p>
                 </div>
                 <div class="card why-us-card">
                     <i class="fas fa-chart-line fa-2x"></i>
-                    <h3>Resultados</h3>
-                    <p>Reducción del 35% en costos de TI y aumento notable en eficiencia.</p>
+                    <h3>Resultados Medibles</h3>
+                    <p>Reducción promedio del 35% en costos de TI y aumento del 25% en la eficiencia operativa.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <p>&copy; 2025 Bravamedia. Todos los derechos reservados.</p>
+        
         <div class="social-links">
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.tiktok.com/@bravamedia6" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/bravamedia.ai/" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
+        
+        <p>&copy; 2025 Bravamedia. Todos los derechos reservados.</p>
     </footer>
 
     <script>
+        // 1. Lógica del menú móvil
         const toggle = document.getElementById('menu-toggle');
         const nav = document.getElementById('nav-links');
         toggle.addEventListener('click', () => nav.classList.toggle('active'));
+
+        // 2. Lógica de animación de carga (Fade-in)
+        window.addEventListener('load', () => {
+            const heroSection = document.getElementById('home');
+            heroSection.classList.add('visible');
+        });
     </script>
 
 </body>
