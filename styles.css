@@ -1,14 +1,16 @@
-/* =========================================
-   1. VARIABLES Y CONFIGURACIÓN BASE
-   ========================================= */
+/* ==================================== */
+/* 0. VARIABLES Y BASE                  */
+/* ==================================== */
 :root {
-    --primary-color: #007BFF; /* Azul confianza */
-    --accent-color: #17A2B8;  /* Turquesa */
-    --text-color: #333;
-    --bg-light: #F8F9FA;
-    --bg-dark: #2c3e50;
-    --font-family: 'Montserrat', sans-serif;
-    --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
+    /* Colores mejorados y modernos */
+    --primary: #007bff; /* Azul vibrante (Más profesional) */
+    --accent: #00d4ff; /* Cian brillante/moderno */
+    --dark: #0a192f; /* Azul medianoche (Fondo principal) */
+    --light-bg: #f4f8fb; /* Fondo claro */
+    --text: #333;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.2); 
+    --transition-speed: 0.4s; /* Transición más lenta y suave */
 }
 
 * {
@@ -17,286 +19,760 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: var(--font-family);
-    color: var(--text-color);
-    line-height: 1.6;
-    background-color: #fff;
-    padding-top: 70px; /* Espacio para el navbar fijo */
+html {
+    scroll-behavior: smooth;
 }
 
-/* =========================================
-   2. BARRA DE NAVEGACIÓN (NAVBAR)
-   ========================================= */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--white);
+    overflow-x: hidden;
+}
+
+.container-narrow {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 100px 0;
+    transition: background-color 0.3s;
+}
+
+.dark-bg {
+    background-color: var(--dark);
+    color: var(--white);
+}
+
+.light-bg {
+    background-color: var(--light-bg);
+    color: var(--text);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dark-bg .section-title {
+    color: var(--white);
+}
+
+.light-bg .section-title {
+    color: var(--dark);
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-bottom: 40px;
+}
+
+.dark-bg .subtitle {
+    color: #ccc;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Scroll Reveal Animation */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botones CTA */
+.cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition-speed), transform 0.2s, box-shadow 0.3s;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button.primary {
+    background-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.cta-button.primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.cta-button.secondary:hover {
+    background-color: var(--accent);
+    color: var(--dark);
+    transform: translateY(-2px);
+}
+
+
+/* ==================================== */
+/* 1. ESTILOS DE LA NAVEGACIÓN          */
+/* ==================================== */
+
 #navbar {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 10px 5%;
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    padding: 20px 40px;
+    background-color: var(--dark); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s, padding 0.3s;
 }
 
-.nav-brand a {
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    letter-spacing: -0.5px;
+#navbar.sticky {
+    padding: 10px 40px;
+    background-color: rgba(10, 25, 47, 0.98); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.site-logo {
+    height: 40px; 
+    width: auto;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
     align-items: center;
+    gap: 30px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--white); 
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: color 0.3s;
+    transition: color 0.3s, border-bottom 0.3s;
+    padding: 5px 0;
 }
 
-.nav-links a:hover { color: var(--primary-color); }
+.nav-links a:hover {
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+}
 
 .cta-nav {
-    background-color: var(--primary-color);
-    color: white !important;
-    padding: 10px 25px;
+    background-color: var(--primary);
+    color: var(--white) !important;
+    padding: 8px 20px;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    border: none !important;
 }
 
 .cta-nav:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(23, 162, 184, 0.3);
+    background-color: #0056b3;
 }
 
-.menu-toggle {
-    display: none;
-    background: none;
+
+/* ---------------------------------------------------- */
+/* TRADUCTOR: Ajustes para integración en la Navbar */
+/* ---------------------------------------------------- */
+
+#translator-container {
+    display: none; /* Deshabilitamos el contenedor viejo fijo */
+}
+
+#translator-nav-item {
+    margin-left: 15px; /* Separación del enlace de Contacto */
+}
+
+#translate-toggle {
+    background: none; 
     border: none;
-    font-size: 1.5rem;
-    color: var(--text-color);
+    color: var(--white); 
+    font-size: 1.4rem; 
     cursor: pointer;
+    padding: 5px 0; 
+    transition: color 0.3s;
 }
 
-/* =========================================
-   3. COMPONENTES GENERALES
-   ========================================= */
-h1 {
-    font-size: 3rem;
+#translate-toggle:hover {
+    color: var(--primary); 
+}
+
+/* Contenedor del Widget de Google Translate */
+#google_translate_element {
+    /* Oculto por defecto */
+    position: fixed; 
+    z-index: 1001; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* El BODY obtiene la clase 'translate-visible' por JavaScript al hacer clic */
+body.translate-visible #google_translate_element {
+    opacity: 1;
+    visibility: visible;
+}
+/* ---------------------------------------------------- */
+
+
+/* ==================================== */
+/* 2. ESTILOS DE LA SECCIÓN HERO        */
+/* ==================================== */
+
+.hero {
+    background-color: var(--dark);
+    padding: 150px 0 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero .container-narrow {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
     font-weight: 800;
+    color: var(--white);
     margin-bottom: 20px;
     line-height: 1.2;
 }
 
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    color: var(--bg-dark);
-    position: relative;
-    padding-bottom: 15px;
+.hero p {
+    font-size: 1.3rem;
+    color: #ccc;
+    margin-bottom: 30px;
 }
 
-/* Línea decorativa debajo de los títulos */
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background-color: var(--primary-color);
-    border-radius: 2px;
-}
-
-.cta-button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: white;
-    padding: 15px 40px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 700;
-    margin-top: 30px;
-    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.4);
-    transition: transform 0.3s;
-}
-
-.cta-button:hover { transform: translateY(-3px); }
-
-/* =========================================
-   4. HERO SECTION (INICIO)
-   ========================================= */
-.hero {
-    height: calc(100vh - 70px);
+.hero-image {
+    flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 0 20px;
-}
-
-.hero .hero-content {
-    max-width: 800px; /* Ancho estrecho para que el texto se lea bien */
-    width: 100%;
-    margin: 0 auto;
-}
-
-.hero-logo-placeholder {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px dashed #ccc;
-    border-radius: 8px;
-    color: #888;
-    margin-bottom: 20px;
-}
-
-/* =========================================
-   5. SECCIÓN DE VENTAJAS / POR QUÉ ELEGIRNOS
-      (AQUÍ ESTÁ LA SOLUCIÓN)
-   ========================================= */
-#why-choose-us {
-    background-color: var(--bg-light);
-    padding: 80px 5%; /* Margen a los lados */
-}
-
-/* REGLA CLAVE: Sobrescribimos el ancho solo para esta sección */
-#why-choose-us .hero-content {
-    max-width: 1400px !important; /* Permitimos que sea muy ancho */
-    width: 100%;
-    margin: 0 auto;
-}
-
-.why-choose-text {
-    text-align: center;
-    max-width: 700px;
-    margin: 20px auto 50px auto;
-    color: #666;
-    font-size: 1.1rem;
-}
-
-/* CONFIGURACIÓN DE LA GRILLA (GRID) */
-.service-grid {
-    display: grid;
-    gap: 30px;
-    /* Esto asegura que las columnas sean iguales */
-    grid-template-columns: repeat(3, 1fr); 
-    width: 100%;
-}
-
-/* Estilo de las tarjetas */
-.service-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: var(--shadow-card);
-    text-align: center; /* Centramos el contenido dentro de la tarjeta */
-    transition: transform 0.3s ease;
-    
-    /* Flex para asegurar alineación interna */
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    height: 100%; /* Todas las tarjetas de la misma altura */
+}
+
+/* Efecto de IA/Cerebro (Circle Image) */
+.ai-circle-image {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+}
+
+.pulsing-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    animation: pulse 2s infinite ease-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.1); opacity: 0; }
+}
+
+.floating-brain, .floating-robot {
+    position: absolute;
+    font-size: 3rem;
+    color: var(--white);
+    animation: float 4s ease-in-out infinite alternate;
+}
+
+.floating-brain {
+    top: 20%;
+    left: 15%;
+}
+
+.floating-robot {
+    bottom: 25%;
+    right: 15%;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-10px) rotate(5deg); }
+}
+
+
+/* ==================================== */
+/* 3. ESTILOS DE LA SECCIÓN DE SERVICIOS */
+/* ==================================== */
+
+.service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.service-card {
+    background-color: var(--white);
+    color: var(--text);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .service-card i {
-    margin-bottom: 20px;
-    color: var(--primary-color);
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
 }
 
-/* Específico para la sección "Por qué elegirnos" */
-.why-choose-grid .service-card {
-    text-align: left; /* Texto alineado a la izquierda como en tu diseño */
-    align-items: flex-start; /* Iconos a la izquierda */
-    border-top: 5px solid var(--primary-color); /* Detalle de color arriba */
+.service-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
 }
 
-/* =========================================
-   6. FOOTER
-   ========================================= */
-footer {
-    background-color: var(--bg-dark);
-    color: white;
+
+/* ==================================== */
+/* 4. ESTILOS DE LA SECCIÓN DE PROCESO (METODOLOGÍA) */
+/* ==================================== */
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.process-step {
     text-align: center;
-    padding: 50px 20px;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
 }
 
-.social-links { margin-top: 20px; }
+.process-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--white);
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Colores para los pasos */
+.step-1 { background-color: #3f51b5; } /* Azul */
+.step-2 { background-color: #ff9800; } /* Naranja */
+.step-3 { background-color: #4caf50; } /* Verde */
+.step-4 { background-color: #f44336; } /* Rojo */
+
+.process-step h3 {
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.process-step p {
+    font-size: 1rem;
+    color: var(--text);
+}
+
+
+/* ==================================== */
+/* 5. ESTILOS DE LA SECCIÓN DE CURSOS   */
+/* ==================================== */
+/* Esta sección es simple, usa solo dark-bg y text-center. */
+
+
+/* ==================================== */
+/* 6. ESTILOS DE LA SECCIÓN DE ALIANZAS */
+/* ==================================== */
+
+.allies-grid {
+    /* 2 columnas para Desktop */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    margin-top: 40px;
+    justify-content: center; /* Asegura que las columnas estén centradas */
+}
+
+/* 1. Estilo de Contenedor de Alianza (ally-logo) */
+.ally-logo {
+    /* Centrado: Usa Flexbox para centrar el ícono y el texto */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    
+    /* Estilo visual de la tarjeta */
+    background-color: var(--white); 
+    padding: 30px 20px; 
+    border-radius: 12px;
+    min-height: 220px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    
+    /* Animación del contenedor */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 1; 
+}
+
+/* Animación al pasar el mouse sobre la caja */
+.ally-logo:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+}
+
+/* 2. Estilo para los Íconos (ally-icon) - Tamaño Reducido y Color */
+.ally-icon {
+    font-size: 2.5em; /* Tamaño moderado solicitado */
+    color: var(--primary); /* Color Azul Vibrante */
+    margin-bottom: 15px; 
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Animación del ícono al pasar el mouse */
+.ally-logo:hover .ally-icon {
+    transform: scale(1.1); /* Hace que el ícono crezca un poco */
+}
+
+/* 3. Estilo para el texto de la alianza */
+.ally-logo p {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--dark);
+    margin: 0;
+}
+
+/* Limpieza de reglas viejas de imágenes */
+.ally-logo img {
+    display: none; 
+}
+
+/* --- Ajuste estético para el ícono del título --- */
+.section-title .fas.fa-handshake {
+    color: var(--dark);
+    margin-right: 15px; 
+    font-size: 1em; 
+}
+
+/* ==================================== */
+/* 7. ESTILOS DE LA SECCIÓN DE CONTACTO */
+/* ==================================== */
+
+/* 1. Estructura principal de dos columnas (Grid) */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 para el formulario, 1/3 para la info */
+    gap: 40px; /* Espacio horizontal entre las dos columnas */
+    margin-top: 40px;
+}
+
+/* 2. Contenedor del formulario (le da el fondo blanco y el centrado visual) */
+.contact-form-container {
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. Estilo para la columna de información (Contact-info) */
+.contact-info {
+    padding: 30px;
+    border-radius: 12px;
+    background-color: var(--dark); 
+}
+
+/* Asegura el color del texto blanco en la info de contacto */
+.contact-info h3, .contact-info p, .contact-info a {
+    color: var(--white);
+    line-height: 1.8;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: var(--accent); /* Usa tu color acento para resaltar los íconos de info */
+}
+
+/* Estilos de los links sociales en la sección de contacto */
+.social-links-contact a {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-links-contact a:hover {
+    color: var(--primary);
+}
+
+/* 4. Estilo para los grupos de entrada (Input-group) - SOLUCIÓN AL ESPACIADO */
+.input-group {
+    margin-bottom: 20px; /* Espaciado vertical entre campos */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 1.05em;
+}
+
+/* 5. Estilo de los campos (Input, Textarea, Select) */
+.contact-form-container input:not([type="submit"]), 
+.contact-form-container textarea,
+.contact-form-container select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form-container input:focus, 
+.contact-form-container textarea:focus,
+.contact-form-container select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+    background-color: var(--white);
+}
+
+.contact-form-container textarea {
+    resize: vertical; 
+}
+
+
+/* 6. Estilo y Centrado del Botón de Envío */
+.submit-button {
+    width: auto !important; 
+    min-width: 200px; 
+    padding: 15px 40px; 
+}
+
+/* El ícono en el botón */
+.submit-button i {
+    margin-left: 10px; 
+}
+
+/* ==================================== */
+/* 8. ESTILOS DEL FOOTER                */
+/* ==================================== */
+
+footer {
+    background-color: #1f2937;
+    color: #f4f4f4;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.social-links {
+    margin: 20px 0 30px 0;
+}
+
 .social-links a {
-    color: white;
-    margin: 0 10px;
+    color: var(--accent);
     font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s;
 }
 
-/* =========================================
-   7. RESPONSIVE (MÓVILES Y TABLETS)
-   ========================================= */
-
-/* Para Tablets y Pantallas pequeñas (menos de 1024px) */
-@media (max-width: 1024px) {
-    /* Cambiamos a 2 columnas si no caben 3 */
-    .service-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Si queda una tarjeta suelta (la 3ra), que ocupe todo el ancho */
-    .service-card:last-child {
-        grid-column: span 2; /* Ocupa 2 espacios */
-        max-width: 600px; /* Pero no la dejes estirarse demasiado */
-        margin: 0 auto; /* Centrada */
-    }
+.social-links a:hover {
+    color: var(--primary);
 }
 
-/* Para Móviles (menos de 768px) */
-@media (max-width: 768px) {
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.8rem; }
+.legal-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+.legal-links a:hover {
+    color: var(--white);
+}
+
+.legal-note {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 15px;
+}
+
+.copyright {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+
+/* ==================================== */
+/* 9. CHATBOT BUTTON (WhatsApp)         */
+/* ==================================== */
+
+#chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.cta-chat-bot {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366; 
+    color: var(--white);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.cta-chat-bot:hover {
+    transform: scale(1.1);
+}
+
+/* ==================================== */
+/* 10. MEDIA QUERIES (RESPONSIVE)       */
+/* ==================================== */
+
+/* Menú Móvil (hasta 900px) */
+.menu-toggle {
+    display: none; 
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--white); 
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    /* Navbar móvil */
+    #navbar {
+        padding: 15px 20px;
+    }
     
-    /* Menú hamburguesa */
-    .menu-toggle { display: block; }
+    .menu-toggle {
+        display: block;
+    }
+    
     .nav-links {
         display: none;
+        flex-direction: column;
         position: absolute;
-        top: 100%;
+        top: 80px; /* Ajusta según la altura de tu nav */
         left: 0;
         width: 100%;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        background-color: var(--dark);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        padding: 20px 0;
+        gap: 0;
     }
-    .nav-links.active { display: flex; }
-    .nav-links li { margin: 10px 0; }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a, #translate-toggle {
+        display: block;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
     
-    /* Forzamos 1 sola columna en móvil */
-    .service-grid {
+    #translator-nav-item {
+        margin-left: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador para el botón en móvil */
+    }
+
+    /* Servicios y Metodología (Tablet) */
+    .service-cards-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    
+    .process-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px;
+    }
+    
+    /* Alianzas y Contacto (Tablet) */
+    .allies-grid, .contact-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (max-width: 600px) {
+    /* Servicios y Metodología (Móvil) */
+    .service-cards-grid {
         grid-template-columns: 1fr; 
     }
     
-    /* Reseteamos el truco del "last-child" para móvil */
-    .service-card:last-child {
-        grid-column: auto;
-        max-width: 100%;
+    .process-grid {
+        grid-template-columns: 1fr; 
     }
 }

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 1: Introducción a la IA - Curso IA para Emprendedores</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ==================================== */
+        /* VARIABLES Y RESET BÁSICO */
+        /* ==================================== */
+        :root {
+            --primary: #0056b3; 
+            --accent: #00d4ff; /* COLOR DE ACENTO PARA EL CURSO DE IA */
+            --dark: #0a192f; 
+            --white: #ffffff;
+            --text-dark: #333;
+            --light-bg: #f4f4f4; 
+            --sidebar-bg: #e9ecef; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+        
+        /* ==================================== */
+        /* LAYOUT PRINCIPAL DE CLASE (70/30) */
+        /* ==================================== */
+        .class-layout {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* ------------------------------------ */
+        /* BARRA LATERAL (TEMARIO) - 30% */
+        /* ------------------------------------ */
+        .sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background-color: var(--sidebar-bg);
+            padding: 30px 20px;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-menu h4 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            /* LÍNEA DE ACENTO */
+            border-bottom: 2px solid var(--accent); 
+        }
+
+        .module-list {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .module-item {
+            padding: 12px 0;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            font-weight: 600;
+            color: #555;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .module-item i {
+            margin-right: 10px;
+        }
+        
+        /* Estado - Completado */
+        .module-item.completed {
+            color: #28a745;
+        }
+        .module-item.completed i {
+            color: #28a745;
+        }
+
+        /* Estado - Activo/Actual */
+        .module-item.active {
+            background-color: var(--dark); /* Fondo oscuro en la activa */
+            color: var(--white);
+            padding: 12px 10px;
+            border-radius: 4px;
+            margin: 5px -10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom: none;
+        }
+        .module-item.active i {
+            color: var(--accent); /* Ícono en color acento */
+        }
+
+        /* Estado - Bloqueado/Pendiente */
+        .module-item i.fa-lock {
+            color: #888;
+        }
+        .module-item:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+        
+        .back-link-small {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* ------------------------------------ */
+        /* CONTENIDO PRINCIPAL (VIDEO) - 70% */
+        /* ------------------------------------ */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+        }
+
+        .main-content h1 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .video-player-mock {
+            background-color: #000;
+            height: 450px; 
+            width: 100%;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .lesson-details h3 {
+            font-size: 1.6rem;
+            color: var(--accent); /* Título de detalles en color acento */
+            margin-bottom: 10px;
+        }
+
+        .lesson-details p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* ------------------------------------ */
+        /* BOTONES DE NAVEGACIÓN */
+        /* ------------------------------------ */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            /* COLOR DEL BOTÓN PRINCIPAL: AZUL BRILLANTE (ACCENT) */
+            background-color: var(--accent); 
+            color: var(--dark);
+        }
+
+        .nav-button:hover:not(.disabled) {
+            background-color: #00b3e6;
+        }
+
+        .nav-button.disabled {
+            background-color: #ccc;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        /* ==================================== */
+        /* MEDIA QUERIES (Móviles) */
+        /* ==================================== */
+        @media (max-width: 900px) {
+            .class-layout {
+                flex-direction: column; 
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="class-layout">
+        
+        <div class="sidebar">
+            <nav class="course-menu">
+                <h4>Curso: Fundamentos de IA para Emprendedores</h4>
+                
+                <ul class="module-list">
+                    <li class="module-item active">
+                        <i class="fas fa-circle-notch fa-spin"></i> MÓDULO 1: La Revolución de la IA (Actual)
+                    </li>
+                    <li class="module-item">
+                        <i class="fas fa-lock"></i> MÓDULO 2: ChatGPT y Creación de Contenido
+                    </li>
+                    <li class="module-item">
+                        <i class="fas fa-lock"></i> MÓDULO 3: Diseño de Imágenes con Midjourney
+                    </li>
+                    <li class="module-item">
+                        <i class="fas fa-lock"></i> MÓDULO 4: Automatización de Tareas
+                    </li>
+                    <li class="module-item">
+                        <i class="fas fa-lock"></i> MÓDULO 5: Estrategias de Negocio con IA
+                    </li>
+                </ul>
+            </nav>
+            <a href="dashboard.html" class="back-link-small"><i class="fas fa-arrow-left"></i> Volver a Mis Cursos</a>
+        </div>
+
+        <div class="main-content">
+            <h1>MÓDULO 1: Introducción y Fundamentos de la Inteligencia Artificial</h1>
+            
+            <div class="video-player-mock">
+                [VIDEO EMBEBIDO DE LA CLASE - Tema: ¿Qué es la IA y por qué te importa?]
+            </div>
+
+            <div class="lesson-details">
+                <h3>Objetivo de esta Clase</h3>
+                <p>Comprenderás los conceptos básicos de la Inteligencia Artificial, cómo ha evolucionado y las oportunidades que ofrece para optimizar tu tiempo y recursos como emprendedor.</p>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button prev disabled"><i class="fas fa-chevron-left"></i> Lección Anterior</button>
+                <button class="nav-button next">Lección Siguiente <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

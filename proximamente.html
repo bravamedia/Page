@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas de Formación y Cursos - Bravamedia</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ==================================== */
+        /* VARIABLES Y RESET BÁSICO             */
+        /* ==================================== */
+        :root {
+            --primary: #0056b3; 
+            --accent: #00d4ff; 
+            --dark: #0a192f; 
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f4f4f4; /* Fondo claro para la sección de listado */
+            padding-top: 0;
+        }
+
+        /* Contenedor principal de la página */
+        .container-narrow {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================================== */
+        /* ESTILOS DEL LISTADO DE CURSOS (GALERÍA DE TARJETAS) */
+        /* ==================================== */
+
+        .course-listing-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .course-listing-section h1 {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .course-listing-section p.subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        /* Contenedor de las tarjetas para layout de columnas */
+        .course-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Espacio entre las tarjetas */
+            flex-wrap: wrap; /* Permite que las tarjetas bajen a una sola columna en móviles */
+        }
+
+        /* Estilo de la Tarjeta Individual */
+        .course-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 380px; /* Tamaño máximo para 3 columnas */
+            min-height: 350px; /* Altura mínima para uniformidad */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: left; /* El texto sigue a la izquierda */
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1; 
+        }
+
+        /* CSS para CENTRAR EL ÍCONO */
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;      /* Hace que ocupe todo el ancho */
+            text-align: center;  /* Centra el ícono dentro de ese ancho */
+        }
+
+        .cta-button-small {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            font-weight: 700;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: auto; 
+        }
+
+        /* Estilos Específicos por Curso */
+        .wordpress-card h3 { color: var(--primary); }
+        .wordpress-card .card-icon { color: #0077aa; } 
+        .wordpress-card .cta-button-small { background-color: var(--primary); color: var(--white); }
+
+        .ia-card h3 { color: #2a2a44; } 
+        .ia-card .card-icon { color: var(--accent); } 
+        .ia-card .cta-button-small { background-color: var(--accent); color: var(--dark); }
+
+        .proximo-card h3 { color: #888; } 
+        .proximo-card .card-icon { color: #aaa; } 
+        .proximo-card .cta-button-small { background-color: #555; color: var(--white); }
+
+        /* ==================================== */
+        /* FOOTER SIMPLE */
+        /* ==================================== */
+        .back-link-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-top: 1px solid #ddd;
+        }
+
+        .back-link-footer a {
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        .back-link-footer a:hover {
+            color: var(--primary);
+        }
+
+        /* Media Query para asegurar la columna simple en móviles */
+        @media (max-width: 768px) {
+            .course-cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .course-card {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="course-listing-section">
+        <div class="container-narrow">
+            <h1>Nuestros Programas de Formación</h1>
+            <p class="subtitle">Descubre cómo podemos ayudarte a potenciar tu negocio con nuestras capacitaciones en tecnología y productividad.</p>
+            
+            <div class="course-cards-container">
+                
+                <div class="course-card wordpress-card">
+                    <i class="fab fa-wordpress card-icon"></i>
+                    <h3>WordPress Desde Cero</h3>
+                    <p>Crea tu sitio web profesional, blog o tienda online sin escribir una sola línea de código. Ideal para principiantes y PyMEs.</p>
+                    
+                    <a href="curso-wordpress-detalle.html" class="cta-button-small">
+                        Ver Temario Completo <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="course-card ia-card">
+                    <i class="fas fa-robot card-icon"></i>
+                    <h3>Fundamentos de IA para Emprendedores</h3>
+                    <p>Aprende a usar ChatGPT, Midjourney y herramientas de IA para optimizar la creación de contenido y automatizar tareas de negocio.</p>
+                    
+                    <a href="curso-ia-detalle.html" class="cta-button-small">
+                        Ver Lista de Espera <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+
+                <div class="course-card proximo-card">
+                    <i class="fas fa-search-dollar card-icon"></i>
+                    <h3>Próximo Curso: SEO Básico</h3>
+                    <p>Aprende a aparecer en las primeras posiciones de Google para atraer clientes orgánicos a tu sitio web sin pagar publicidad.</p>
+                    
+                    <a href="contact.html" class="cta-button-small">
+                        Notificarme del Lanzamiento <i class="fas fa-bell"></i>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="back-link-footer">
+        <a href="index.html">Volver a la página principal de Bravamedia</a>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Bravamedia</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <style>
+        :root {
+            /* Colores de referencia, asegúrate de que existen en styles.css */
+            --dark: #1a1a2e; 
+            --white: #ffffff;
+        }
+        
+        body {
+            /* SOLUCIÓN LÍNEA BLANCA: Fondo del body igual al fondo de la sección de contacto */
+            background-color: var(--dark); 
+        }
+        
+        /* Estilo simple para el Header de Contacto */
+        #contact-header-simple { 
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--dark); 
+            box-shadow: none; /* QUITA SOMBRA/LÍNEA BLANCA */
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap; 
+        }
+
+        /* ✅ ESTILO DEL BOTÓN "VOLVER AL INICIO" (Igual a los enlaces del menú) */
+        #contact-header-simple .back-link {
+            color: var(--white); 
+            text-decoration: none;
+            padding: 10px 15px; 
+            font-weight: 600;
+            background-color: transparent; /* SIN FONDO AZUL */
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 4px;
+            margin-right: 20px; /* Separación del traductor */
+        }
+        
+        #contact-header-simple .back-link:hover {
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
+        
+        /* Posiciona y estiliza el widget del traductor */
+        #google_translate_element_contact {
+            display: inline-block; 
+            vertical-align: middle;
+            /* Aquí eliminamos el margin-left porque ya hay separación con el botón */
+        }
+        
+        #contact {
+            padding: 80px 0;
+            background-color: var(--dark); 
+            min-height: calc(100vh - 250px); 
+            margin-top: 0 !important; 
+        }
+    </style>
+</head>
+<body>
+    
+    <header id="contact-header-simple">
+        <div class="nav-brand">
+            <a href="index.html" class="ai-nav-logo">
+                <img src="logo.png" alt="Bravamedia Logo" class="site-logo"> 
+            </a>
+        </div>
+        
+        <div class="header-actions">
+            
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </a>
+            
+            <div id="google_translate_element_contact"></div>
+            
+        </div>
+    </header>
+
+    <div class="contact-page-wrapper">
+        <section id="contact" class="dark-bg"> 
+            <div class="container-narrow">
+                <h2 class="section-title white-text">
+                    <i class="fas fa-headset"></i> Conversemos Hoy
+                </h2>
+                
+                <p class="subtitle white-text">
+                    Envíanos un mensaje para iniciar tu consultoría o solicitar más detalles sobre nuestros servicios.
+                </p>
+
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <form id="contact-form" action="https://formspree.io/f/xldvgkwe" method="POST">
+                            
+                            <div class="input-group">
+                                <label for="name">Tu Nombre Completo</label>
+                                <input type="text" id="name" name="Nombre" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Tu Correo Electrónico</label>
+                                <input type="email" id="email" name="Email" required>
+                            </div>
+                            
+                            <div class="input-group"> 
+                                <label for="phone">Número de Teléfono / WhatsApp</label>
+                                <input type="tel" id="phone" name="WhatsApp" placeholder="+1 (909) 968-9879" required>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="service">Servicio de Interés</label>
+                                <select id="service" name="Servicio_Interes" required>
+                                    <option value="" disabled selected>Selecciona un servicio...</option>
+                                    <option value="Consultoria_AI">Consultoría en Soluciones IA</option>
+                                    <option value="Desarrollo_Web">Desarrollo Web / E-Commerce</option>
+                                    <option value="Soporte_IT">Soporte y Ciberseguridad</option>
+                                    <option value="Cursos">Cursos y Capacitación</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="message">Mensaje / Breve descripción de tu proyecto</label>
+                                <textarea id="message" name="Mensaje_Proyecto" rows="4" required></textarea>
+                            </div>
+
+                            <div style="text-align: center;">
+                                <input type="hidden" name="_replyto" id="replyto-email">
+                                <button type="submit" class="cta-button primary submit-button">
+                                    Enviar Solicitud <i class="fas fa-paper-plane"></i> </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info white-text">
+                        <h3>Contáctanos</h3>
+                        <p><i class="fas fa-envelope"></i>: bravamediainfo@gmail.com</p>
+                        <p><i class="fab fa-whatsapp"></i>: +1 (909) 968-9879</p>
+                        
+                        <h3 style="margin-top: 30px;">Horario</h3>
+                        <p>Lunes a Viernes</p>
+                        <p>9:00 AM - 6:00 PM (PST)</p>
+
+                         <h3 style="margin-top: 30px;">Ubicación</h3>
+                        <p>Los Angeles, CA</p>
+                        <p>Caracas, VE</p>
+                        
+                        <h3 style="margin-top: 30px;">Síguenos</h3>
+                        <div class="social-links-contact">
+                            <a href="https://www.instagram.com/bravamedia.ai/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/bravamedia" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.tiktok.com/@bravamedia.ai" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a> 
+                            <a href="https://www.youtube.com/@bravamediaai" aria-label="Youtube"><i class="fab fa-youtube"></i></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p style="color: #aaa;">Conectamos el talento de TI con tus proyectos empresariales.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/bravamedia.ai/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/bravamedia" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.tiktok.com/@bravamedia.ai" aria-label="Tiktok"><i class="fab fa-tiktok"></i></a> 
+                <a href="https://www.youtube.com/@bravamediaai" aria-label="Youtube"><i class="fab fa-youtube"></i></a> 
+            </div>
+            <div class="legal-links">
+                <a href="privacy.html">Política de Privacidad</a> |
+                <a href="terms.html">Términos y Condiciones</a>
+            </div>
+            <p class="copyright">&copy; 2025 Bravamedia. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <div id="chatbot-button">
+        <a href="https://wa.me/19099689879?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." class="cta-chat-bot" target="_blank" aria-label="Chatear por WhatsApp"> 
+            <i class="fab fa-whatsapp"></i> 
+        </a>
+    </div>
+
+    <script type="text/javascript" async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInitContact"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInitContact() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es', 
+                includedLanguages: 'en,fr,de,it,pt', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element_contact');
+        }
+    </script>
+    
+</body>
+</html>

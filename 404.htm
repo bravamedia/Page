@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 - Página No Encontrada - Bravamedia</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--light-bg); /* Fondo claro de tu sitio */
+            padding: 20px;
+        }
+
+        .error-code {
+            font-size: 10rem; /* Número 404 muy grande */
+            font-weight: 800;
+            color: var(--accent); /* Color cian para impacto */
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 5px 5px 0 rgba(0, 123, 255, 0.1); /* Sombra sutil */
+        }
+
+        .error-message {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .error-subtext {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 600px) {
+            .error-code {
+                font-size: 7rem;
+            }
+            .error-message {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="translator-container">
+        <button id="translate-toggle" aria-label="Traducir">
+            <i class="fas fa-globe"></i>
+        </button>
+        <div id="google_translate_element"></div>
+    </div>
+    
+    <section class="error-page">
+        <div class="error-container">
+            <p class="error-code">404</p>
+            <h1 class="error-message">¡Página No Encontrada!</h1>
+            <p class="error-subtext">
+                Parece que la página que estás buscando no existe. No te preocupes, puedes volver a la seguridad del inicio.
+            </p>
+            <a href="index.html" class="cta-button primary">
+                <i class="fas fa-home"></i> Volver a la Página Principal
+            </a>
+        </div>
+    </section>
+    
+    <script src="script.js" defer></script>
+    <script type="text/javascript" async src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'es', 
+                includedLanguages: 'en,fr,de,it,pt', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    
+</body>
+</html>

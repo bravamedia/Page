@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bravamedia</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* [Estilos CSS del Dashboard] */
+        :root {
+            --primary: #0056b3; /* Azul Principal */
+            --accent: #00d4ff; 
+            --dark: #0a192f; 
+            --white: #ffffff;
+            --text-dark: #333;
+            --light-bg: #f4f4f4; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+            min-height: 100vh;
+        }
+
+        /* Utilidad para centrar y limitar ancho */
+        .container-narrow {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================================== */
+        /* ENCABEZADO Y NAVEGACIÓN */
+        /* ==================================== */
+        .dashboard-header {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 40px 0;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .dashboard-header h2 {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .user-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 20px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+
+        .user-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Estado activo en la navegación */
+        .user-nav a.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        .user-nav a.active:hover {
+            background-color: #004499;
+        }
+
+        .user-nav a i {
+            margin-right: 8px;
+        }
+
+        /* Botón Cerrar Sesión (Destacado) */
+        .user-nav a[onclick="logout()"] {
+            background-color: var(--primary);
+        }
+        .user-nav a[onclick="logout()"]:hover {
+            background-color: #004499;
+        }
+
+        /* ==================================== */
+        /* SECCIÓN PRINCIPAL (CURSOS & PERFIL) */
+        /* ==================================== */
+        .main-section {
+            padding: 40px 0;
+        }
+
+        .view-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        /* Ocultar las vistas por defecto */
+        .view {
+            display: none;
+        }
+        .view.active {
+            display: block;
+        }
+
+        /* VISTA DE CURSOS (Mantiene la cuadrícula anterior) */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .wordpress-card .card-header {
+            background-image: url('https://placehold.co/600x150/0056b3/ffffff?text=WordPress+para+Negocios');
+        }
+
+        .ia-card .card-header {
+            background-image: url('https://placehold.co/600x150/0a192f/00d4ff?text=IA+para+Emprendedores');
+        }
+        
+        .seo-card .card-header {
+            background-image: url('https://placehold.co/600x150/343a40/ffffff?text=SEO+Básico');
+        }
+        
+        .card-header h4 {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background-color: rgba(0, 0, 0, 0.6); 
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .progress-container {
+            background-color: var(--light-bg);
+            border-radius: 5px;
+            height: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary); 
+            width: 0%; 
+            transition: width 0.5s ease-in-out;
+        }
+
+        .ia-card .progress-bar {
+            background-color: var(--accent); 
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .ia-card .progress-text {
+             color: var(--accent);
+        }
+
+        .card-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .wordpress-card .card-button {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        .wordpress-card .card-button:hover {
+            background-color: #004499;
+        }
+
+        .ia-card .card-button {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        .ia-card .card-button:hover {
+            background-color: #00b3e6;
+        }
+
+        .seo-card .card-button {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        /* ==================================== */
+        /* VISTA DE PERFIL */
+        /* ==================================== */
+        .profile-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .profile-card h4 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-card h4 i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            border-bottom: 1px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+
+        .detail-row label {
+            font-weight: 700;
+            width: 120px;
+            color: var(--dark);
+        }
+
+        .detail-row span {
+            flex-grow: 1;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+        
+        /* Botón de edición simulado */
+        .edit-button {
+            padding: 10px 20px;
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 15px;
+        }
+        
+        .edit-button:hover {
+            background-color: #00b3e6;
+        }
+
+        /* ==================================== */
+        /* MEDIA QUERIES (Móviles) */
+        /* ==================================== */
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 30px 0;
+            }
+            
+            .dashboard-header h1 {
+                font-size: 2rem;
+            }
+            
+            .user-nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 15px;
+            }
+
+            .user-nav a {
+                margin: 5px;
+                padding: 6px 10px;
+            }
+            
+            .view-title {
+                font-size: 1.5rem;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .detail-row label {
+                margin-bottom: 5px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<!-- CLAVE: OCULTAR HASTA CONFIRMAR SESIÓN para evitar el parpadeo y la redirección no deseada -->
+<body style="display:none;"> 
+
+    <header class="dashboard-header">
+        <div class="container-narrow">
+            <h1 id="welcome-message">👋 Bienvenido, [Cargando Nombre...]</h1> 
+            <h2>Tu centro de formación en Bravamedia</h2>
+            
+            <nav class="user-nav">
+                <!-- Se añaden onclicks para cambiar la vista -->
+                <a href="#" id="nav-dashboard" class="active" onclick="showView('dashboard')"><i class="fas fa-th-large"></i> Mis Cursos</a>
+                <a href="#" id="nav-profile" onclick="showView('profile')"><i class="fas fa-user-circle"></i> Mi Perfil</a>
+                <a href="proximamente.html"><i class="fas fa-search"></i> Ver Catálogo Completo</a>
+                <a href="#" onclick="logout()"><i class="fas fa-power-off"></i> Cerrar Sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-section">
+        <div class="container-narrow">
+            
+            <!-- VISTA 1: DASHBOARD DE CURSOS -->
+            <div id="dashboard-view" class="view active">
+                <h3 class="view-title">Mis Cursos Activos</h3>
+
+                <div class="course-grid">
+
+                    <!-- TARJETA 1: WordPress (75% de Progreso) -->
+                    <div class="course-card wordpress-card">
+                        <div class="card-header">
+                            <h4>WordPress Desde Cero</h4>
+                        </div>
+                        <div class="card-content">
+                            <p>Aprende a crear sitios web profesionales y funcionales sin escribir código.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="wp-progress-bar" style="width: 0%;"></div> 
+                            </div>
+                            <p class="progress-text" id="wp-progress-text">0% Completado</p>
+                            <a href="clase-wordpress-modulo1.html" class="card-button">
+                                <i class="fas fa-play-circle"></i> Continuar Curso
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- TARJETA 2: IA para Emprendedores (100% de Progreso) -->
+                    <div class="course-card ia-card">
+                        <div class="card-header">
+                            <h4>Fundamentos de IA para Emprendedores</h4>
+                        </div>
+                        <div class="card-content">
+                            <p>Domina herramientas como ChatGPT y Midjourney para optimizar tu negocio.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="ia-progress-bar" style="width: 0%;"></div> 
+                            </div>
+                            <p class="progress-text" id="ia-progress-text">0% Completado</p>
+                            <a href="clase-ia-modulo1.html" class="card-button">
+                                <i class="fas fa-certificate"></i> Obtener Certificado
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- TARJETA 3: SEO Básico (0% de Progreso / Próximamente) -->
+                    <div class="course-card seo-card">
+                        <div class="card-header">
+                            <h4>Curso: SEO Básico</h4>
+                        </div>
+                        <div class="card-content">
+                            <p>Aumenta la visibilidad de tu web en Google sin pagar anuncios.</p>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 0%; background-color: #888;"></div>
+                            </div>
+                            <p class="progress-text" style="color: #666;">Próximamente</p>
+                            <a href="#" class="card-button" disabled>
+                                <i class="fas fa-hourglass-half"></i> Próximamente
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Fin: dashboard-view -->
+            
+            <!-- VISTA 2: PERFIL DE USUARIO -->
+            <div id="profile-view" class="view">
+                <h3 class="view-title">Mi Perfil y Configuración</h3>
+
+                <div class="profile-card">
+                    <h4><i class="fas fa-id-badge"></i> Datos Personales</h4>
+                    
+                    <div class="detail-row">
+                        <label>Nombre Completo:</label>
+                        <span id="profile-name">[Nombre de Usuario]</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <label>Email:</label>
+                        <span id="profile-email">[Correo Electrónico]</span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <label>Estado:</label>
+                        <span>Miembro Activo <i class="fas fa-check-circle" style="color: var(--primary);"></i></span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <label>Membresía:</label>
+                        <span>Acceso Ilimitado Premium</span>
+                    </div>
+                    
+                    <button class="edit-button" onclick="alert('Funcionalidad de edición simulada.')">
+                        <i class="fas fa-edit"></i> Editar mi Perfil (Simulado)
+                    </button>
+                </div>
+                
+                <br><br>
+                
+                <div class="profile-card">
+                    <h4><i class="fas fa-key"></i> Seguridad y Contraseña</h4>
+                    <p>Si deseas cambiar tu contraseña, haz clic en el botón de abajo.</p>
+                     <button class="edit-button" onclick="alert('Funcionalidad de cambio de contraseña simulada.')">
+                        <i class="fas fa-lock"></i> Cambiar Contraseña (Simulado)
+                    </button>
+                </div>
+                
+            </div> <!-- Fin: profile-view -->
+
+        </div>
+    </main>
+
+    <!-- LÓGICA DE SIMULACIÓN DE DASHBOARD -->
+    <script>
+        // Objeto global para los datos del usuario logueado
+        let currentUser = null; 
+        
+        // **FUNCIÓN CRÍTICA: VERIFICACIÓN DE SESIÓN INMEDIATA**
+        function checkSession() {
+            // Intenta obtener los datos del usuario de localStorage
+            const userDataString = localStorage.getItem('currentUser');
+            
+            if (!userDataString) {
+                // Si no hay datos, redirige al login
+                window.location.href = './login.html'; 
+                return null;
+            }
+            
+            try {
+                // Si hay datos, los parsea y los guarda globalmente
+                currentUser = JSON.parse(userDataString); 
+                // Muestra el body del dashboard (que estaba oculto)
+                document.body.style.display = 'block';
+                return currentUser;
+            } catch (e) {
+                // Si falla al parsear, borra los datos inválidos y redirige
+                logout(); 
+                return null;
+            }
+        }
+        
+        // Ejecución Inmediata de la verificación de sesión
+        checkSession();
+        
+        // Si la sesión es válida, esperamos a que la página cargue para llenar los datos
+        if (currentUser) {
+            window.onload = loadDashboardData;
+        }
+        
+        
+        // Datos simulados de progreso
+        const USER_PROGRESS = {
+            'WordPress Desde Cero': '75%',
+            'Fundamentos de IA para Emprendedores': '100%',
+        };
+        
+        // Función para cambiar la vista (Dashboard o Perfil)
+        function showView(viewName) {
+            // Ocultar todas las vistas
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Remover estado activo de navegación
+            document.querySelectorAll('.user-nav a').forEach(nav => {
+                nav.classList.remove('active');
+            });
+
+            // Mostrar la vista solicitada
+            const targetView = document.getElementById(viewName + '-view');
+            const targetNav = document.getElementById('nav-' + viewName);
+            
+            if (targetView) targetView.classList.add('active');
+            
+            // Activar el enlace de navegación (Mi Perfil o Mis Cursos)
+            if (targetNav) targetNav.classList.add('active');
+        }
+
+
+        // Función para cargar los datos del usuario en la vista de perfil
+        function loadProfileData() {
+            if (currentUser) {
+                // Llenar datos en la vista de perfil
+                document.getElementById('profile-name').innerText = currentUser.name;
+                document.getElementById('profile-email').innerText = currentUser.email;
+            }
+        }
+
+
+        function loadDashboardData() {
+            // 1. Personalizar el mensaje de bienvenida
+            document.getElementById('welcome-message').innerHTML = `🎉 ¡Bienvenido de vuelta, ${currentUser.name}!`; 
+            
+            // 2. Cargar datos del perfil (incluso si no se muestra)
+            loadProfileData(); 
+            
+            // 3. Cargar el progreso en las tarjetas
+            
+            // WordPress Card (75%)
+            const wpProgress = USER_PROGRESS['WordPress Desde Cero'];
+            const wpBar = document.getElementById('wp-progress-bar');
+            const wpText = document.getElementById('wp-progress-text');
+            if(wpBar) wpBar.style.width = wpProgress;
+            if(wpText) wpText.innerText = `${wpProgress} Completado`;
+
+            // IA Card (100%)
+            const iaProgress = USER_PROGRESS['Fundamentos de IA para Emprendedores'];
+            const iaBar = document.getElementById('ia-progress-bar');
+            const iaText = document.getElementById('ia-progress-text');
+            if(iaBar) iaBar.style.width = iaProgress;
+            if(iaText) iaText.innerText = `¡${iaProgress} Finalizado!`;
+            
+            // Aseguramos que inicie en la vista de cursos
+            showView('dashboard');
+        }
+
+        // Función para cerrar sesión (borra la simulación y redirige)
+        function logout() {
+            localStorage.removeItem('currentUser'); // Borra los datos de sesión
+            window.location.href = './login.html'; // Redirige al login
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Curso: Fundamentos de IA - Bravamedia</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ==================================== */
+        /* VARIABLES Y RESET BÁSICO             */
+        /* ==================================== */
+        :root {
+            --primary: #0056b3; 
+            --accent: #00d4ff; /* Color de acento IA */
+            --dark: #0a192f; 
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f4f4f4; /* Fondo de la página principal */
+        }
+
+        .container-narrow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================================== */
+        /* ENCABEZADO Y CTA (Adaptado a la estructura principal) */
+        /* ==================================== */
+        .course-detail-header {
+            background-color: #2a2a44; /* Fondo oscuro de IA coherente */
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .course-detail-header h1 {
+            font-size: 3rem;
+            color: var(--accent); /* Color de IA */
+            margin-bottom: 10px;
+        }
+        
+        /* Stats y Botones como en el diseño de detalle original */
+        .course-detail-header p {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        .course-info-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        .stat-item i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-align: center;
+            background-color: var(--accent); /* Botón con color de acento de IA */
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem; 
+        }
+        .cta-button:hover {
+            background-color: #00aacc;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ==================================== */
+        /* SECCIÓN DE TEMARIO Y MÓDULOS (Temario Central) */
+        /* ==================================== */
+        .syllabus-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .syllabus-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--accent); /* Borde con color de IA */
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-card h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .module-card h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.1em;
+        }
+        .module-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        .module-card li {
+            padding: 8px 0;
+            border-top: 1px dashed #eee;
+            color: #555;
+            font-size: 1rem;
+        }
+        .module-card li:first-child {
+            border-top: none;
+        }
+
+        /* ==================================== */
+        /* FOOTER DE RETORNO (Coherente con la Galería) */
+        /* ==================================== */
+        .back-link-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white); /* Cambiado a blanco para coherencia */
+            border-top: 1px solid #ddd;
+        }
+        .back-link-footer a {
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        .back-link-footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .course-detail-header h1 { font-size: 2rem; }
+            .course-info-stats { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="course-detail-header">
+        <div class="container-narrow">
+            <i class="fas fa-robot fa-5x" style="color: var(--accent); margin-bottom: 20px;"></i>
+            <h1>Fundamentos de IA para Emprendedores</h1>
+            
+            <p>
+                **Domina las Herramientas que Ahorran Tiempo y Dinero.**<br>
+                Aprende a usar ChatGPT, Midjourney y otras plataformas de Inteligencia Artificial para automatizar tareas, generar contenido de marketing y optimizar tu negocio sin ser programador.
+            </p>
+
+            <div class="course-info-stats">
+                <span class="stat-item"><i class="fas fa-signal"></i> Nivel: **Principiante**</span>
+                <span class="stat-item"><i class="fas fa-clock"></i> Duración: **4 Módulos Esenciales**</span>
+                <span class="stat-item"><i class="fas fa-calendar-alt"></i> Estado: **Próximamente (Lista de Espera)**</span>
+            </div>
+
+            <a href="contact.html" class="cta-button">
+                <i class="fas fa-list-ul"></i> ¡Quiero Unirme a la Lista de Espera!
+            </a>
+        </div>
+    </section>
+
+    <section class="syllabus-section">
+        <div class="container-narrow">
+            <h2>Temario del Curso (Próximamente)</h2>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 1: La IA en el Trabajo Diario</h3>
+                <ul>
+                    <li>**Lección Clave:** ¿Qué es realmente la IA generativa y cómo está cambiando el marketing?</li>
+                    <li>**Lección Clave:** Configuración básica y ética: La seguridad de tus datos y la propiedad intelectual.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 2: Creación de Contenido con ChatGPT</h3>
+                <ul>
+                    <li>**Lección Clave:** Ingeniería de Prompts: Escribir comandos que dan resultados de calidad.</li>
+                    <li>**Lección Clave:** Crear artículos, copies para redes sociales y guiones de video en minutos.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 3: Diseño Visual con IA (Midjourney/DALL-E)</h3>
+                <ul>
+                    <li>**Lección Clave:** Generación de imágenes para posts, anuncios y banners de forma profesional.</li>
+                    <li>**Lección Clave:** Edición y retoque rápido de imágenes existentes usando IA.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 4: Automatización y Productividad</h3>
+                <ul>
+                    <li>**Lección Clave:** Automatizar respuestas de correo electrónico y categorización de datos.</li>
+                    <li>**Lección Clave:** Casos de uso avanzados: Análisis de tendencias y resúmenes de mercado.</li>
+                </ul>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.1rem; font-weight: 600; color: #555;">¡Estamos preparando los últimos detalles! Déjanos tus datos para ser el primero en saber cuándo abren las inscripciones.</p>
+                <a href="contact.html" class="cta-button" style="margin-top: 10px;">
+                    <i class="fas fa-envelope"></i> Contactar para Lista VIP
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="back-link-footer">
+        <a href="proximamente.html">Volver a la Galería de Cursos</a>
+    </footer>
+
+</body>
+</html>

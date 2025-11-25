@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Curso: WordPress Desde Cero - Bravamedia</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        /* ==================================== */
+        /* VARIABLES Y RESET BÁSICO             */
+        /* (Mantenemos estas variables para los colores) */
+        /* ==================================== */
+        :root {
+            --primary: #0056b3; /* Azul WordPress */
+            --accent: #00d4ff; 
+            --dark: #0a192f; 
+            --white: #ffffff;
+            --text-dark: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #f4f4f4; /* Fondo de la página principal */
+        }
+
+        .container-narrow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==================================== */
+        /* ENCABEZADO Y CTA (Adaptado a la estructura principal) */
+        /* ==================================== */
+        .course-detail-header {
+            background-color: var(--dark); /* Fondo oscuro coherente */
+            color: var(--white);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .course-detail-header h1 {
+            font-size: 3rem;
+            color: var(--primary); /* Color de WordPress */
+            margin-bottom: 10px;
+        }
+        
+        /* Stats y Botones como en el diseño de detalle original */
+        .course-detail-header p {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        .course-info-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        .stat-item i {
+            margin-right: 10px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.3s;
+            text-align: center;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem; 
+        }
+        .cta-button:hover {
+            background-color: #004499;
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+        }
+
+        /* ==================================== */
+        /* SECCIÓN DE TEMARIO Y MÓDULOS (Temario Central) */
+        /* ==================================== */
+        .syllabus-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+
+        .syllabus-section h2 {
+            font-size: 2rem;
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 40px;
+        }
+
+        .module-card {
+            background-color: #f9f9f9;
+            border-left: 5px solid var(--primary); /* Mantener el color de WordPress */
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .module-card h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 1.1em;
+        }
+        .module-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        .module-card li {
+            padding: 8px 0;
+            border-top: 1px dashed #eee;
+            color: #555;
+            font-size: 1rem;
+        }
+        .module-card li:first-child {
+            border-top: none;
+        }
+
+        /* ==================================== */
+        /* FOOTER DE RETORNO (Coherente con la Galería) */
+        /* ==================================== */
+        .back-link-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--white); /* Cambiado a blanco para coherencia */
+            border-top: 1px solid #ddd;
+        }
+        .back-link-footer a {
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+        .back-link-footer a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 600px) {
+            .course-detail-header h1 { font-size: 2rem; }
+            .course-info-stats { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="course-detail-header">
+        <div class="container-narrow">
+            <i class="fab fa-wordpress fa-5x" style="color: var(--primary); margin-bottom: 20px;"></i>
+            <h1>WordPress Desde Cero para PyMEs</h1>
+            
+            <p>
+                **Crea y Optimiza tu Web Profesional Sin Código.**<br>
+                Un programa de 6 módulos diseñado para el emprendedor que quiere lanzar su sitio web hoy, sin depender de agencias o programadores. ¡Simple, rápido y efectivo!
+            </p>
+
+            <div class="course-info-stats">
+                <span class="stat-item"><i class="fas fa-signal"></i> Nivel: **Principiante Absoluto**</span>
+                <span class="stat-item"><i class="fas fa-clock"></i> Duración: **6 Módulos Prácticos**</span>
+                <span class="stat-item"><i class="fas fa-certificate"></i> Certificación: **Sí** (Al finalizar)</span>
+            </div>
+
+            <a href="contact.html" class="cta-button">
+                <i class="fas fa-envelope"></i> ¡Quiero Inscribirme o Solicitar Información!
+            </a>
+        </div>
+    </section>
+
+    <section class="syllabus-section">
+        <div class="container-narrow">
+            <h2>Temario del Curso (Enfoque Práctico)</h2>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 1: Tu Casa en Internet (Hosting y Dominio)</h3>
+                <ul>
+                    <li>**Lección Clave:** ¿Qué es una web y cómo funciona realmente?</li>
+                    <li>**Lección Clave:** Comprar el nombre (dominio) y alquilar el terreno (hosting) para tu sitio.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 2: El Corazón de tu Web (Instalación y Panel)</h3>
+                <ul>
+                    <li>**Lección Clave:** Instalar WordPress con 1 solo clic (¡te mostramos cómo!).</li>
+                    <li>**Lección Clave:** Navegar por el panel de control, como si fuera una app nueva.</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 3: La Piel de tu Marca (Diseño sin Código)</h3>
+                <ul>
+                    <li>**Lección Clave:** Elegir un 'traje' (Tema) profesional, rápido y gratuito.</li>
+                    <li>**Lección Clave:** Usar el constructor visual: Arrastrar y soltar elementos para diseñar tu web sin código.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 4: Tu Historia y Tus Productos (Contenido)</h3>
+                <ul>
+                    <li>**Lección Clave:** Crear las páginas cruciales: Inicio, Contacto, Servicios y Quiénes Somos.</li>
+                    <li>**Lección Clave:** Manejar el Blog para atraer clientes y mostrar autoridad.</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 5: Los Superpoderes de tu Web (Plugins)</h3>
+                <ul>
+                    <li>**Lección Clave:** Añadir funcionalidades con "apps" (Plugins): Formularios, botones de WhatsApp.</li>
+                    <li>**Lección Clave:** La herramienta secreta para posicionarte en Google (SEO).</li>
+                </ul>
+            </div>
+
+            <div class="module-card">
+                <h3><i class="fas fa-angle-right"></i> MÓDULO 6: Seguridad y Lanzamiento Épico</h3>
+                <ul>
+                    <li>**Lección Clave:** Asegurar tu web con un "candado" (SSL) y hacer copias de respaldo automáticas.</li>
+                    <li>**Lección Clave:** Checklist final antes de poner el sitio en modo "público" y medir el rendimiento.</li>
+                </ul>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="contact.html" class="cta-button">
+                    <i class="fas fa-rocket"></i> ¡Empieza a Construir tu Web Hoy!
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="back-link-footer">
+        <a href="proximamente.html">Volver a la Galería de Cursos</a>
+    </footer>
+
+</body>
+</html>
